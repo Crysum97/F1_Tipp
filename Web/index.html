@@ -22,25 +22,29 @@
             <div class="form-group">
                 <label for="team-select">Team auswählen:</label>
                 <select id="team-select">
-                    <option value="">Red Bull</option>
-                    <option value="">Mercedes</option>
-                    <option value="">Ferrari</option>
-                    <option value="">McLarenl</option>
-                    <option value="">Aston Martin</option>
-                    <option value="">Alpine</option>
-                    <option value="">Williams</option>
-                    <option value="">Racing Bulls</option>
-                    <option value="">sauber</option>
-                    <option value="">Haas</option>
+                    <option value="None">...</option>
+                    <option value="0">Ferrari</option>
+                    <option value="1">Mercedes</option>
+                    <option value="2">Haas</option>
+                    <option value="3">McLaren</option>
+                    <option value="4">Aston Martin</option>
+                    <option value="5">Alpine</option>
+                    <option value="6">Williams</option>
+                    <option value="7">Racing Bulls</option>
+                    <option value="8">Sauber</option>
+                    <option value="9">Red Bull</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="member-one">Platzierung:</label>
-                <input id="member-one" type="number">
+                <input id="member-one" type="number" onchange="bet()" placeholder="Platzierung eingeben">
             </div>
          <div class="form-group">
-                <label for="member-one">Platzierung:</label>
-                <input id="member-two" type="number">
+                <label for="member-two">Platzierung:</label>
+                <input id="member-two" type="number" onchange="bet()" placeholder="Platzierung eingeben">
+            </div>
+            <div class="form-group">
+                <button id=WettButton>Wette Einloggen</button>
             </div>
         </form>
         <table class="table">
@@ -64,5 +68,6 @@
             </tbody>
         </table>
     </div>
+    <script src="index.js"></script>
 </body>
 </html>

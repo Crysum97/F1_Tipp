@@ -1,10 +1,12 @@
 import secrets
+from typing import Optional
+
 from App.util.Tools import hash_sha256
 from pydantic import BaseModel
 
 
 class UserModel(BaseModel):
-    user_id: int | None = None
+    user_id: Optional[int] = None
     name: str
     password: str
     salt: str
