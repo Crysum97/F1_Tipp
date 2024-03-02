@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrierungsformular</title>
+</head>
+<body>
+    <h2>Registrierungsformular</h2>
+    <form action="/submit-your-form-endpoint" method="post">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="password">Passwort:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <button type="submit">Registrieren</button>
+        </div>
+    </form>
+</body>
+</html>
