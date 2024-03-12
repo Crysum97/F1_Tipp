@@ -1,4 +1,5 @@
 import secrets
+from datetime import datetime
 from typing import Optional
 
 from App.util.Tools import hash_sha256
@@ -10,6 +11,7 @@ class UserModel(BaseModel):
     name: str
     password: str
     salt: str
+    last_login: datetime
 
 
 class User:
@@ -17,6 +19,7 @@ class User:
     __name = None
     __password = None
     __salt = None
+    __last_login = None
 
     def __init__(self, **kwargs):
         self.__user_id = kwargs.get("id", None)
@@ -48,3 +51,9 @@ class User:
 
     def get_salt(self):
         return self.__salt
+
+    def get_last_login(self):
+        return self.__last_login
+
+    def reauth(self):
+        self.__last_login = datetime.now()

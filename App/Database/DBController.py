@@ -21,14 +21,24 @@ def create_database():
 
 
 def insert_user(user_obj):
-    query = f"INSERT INTO user (name, pass_hash, salt) VALUES ('{user_obj.get_name()}', '{user_obj.get_pass_hash()}'," \
-            f" '{user_obj.get_salt()}')"
+    query = f"INSERT INTO user (name, pass_hash, salt, last_login) VALUES ('{user_obj.get_name()}', '{user_obj.get_pass_hash()}'," \
+            f" '{user_obj.get_salt()}', '{user_obj.get_last_login()}')"
+    print(query)
     con = sqlite3.connect(os.path.join(ROOT_DIR, "local.db"))
     cursor = con.cursor()
     try:
         cursor.execute(query)
     except IntegrityError:
-        print("This user already exists!")
+        pass
+    con.commit()
+    con.close()
+
+
+def reauth_user(user_obj: User):
+    query = f"UPDATE user SET last_login = '{user_obj.get_last_login()}' WHERE id = '{user_obj.get_id()}'"
+    con = sqlite3.connect(os.path.join(ROOT_DIR, "local.db"))
+    cursor = con.cursor()
+    cursor.execute(query)
     con.commit()
     con.close()
 

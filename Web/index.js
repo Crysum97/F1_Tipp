@@ -1,3 +1,7 @@
+import {getCookie} from "./Utility.js";
+
+const cookie = getCookie("auth");
+console.log(cookie);
 
 let team = ""
 let driverOne = document.getElementById("member-one").value
