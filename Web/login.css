@@ -1,8 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url("./background.jpg");
+    background-size: 100%;
+}
+
+#header {
+    left: 0;
+    top: 0;
+    height: 10vh;
+    background: linear-gradient(90deg, red, white);
+    overflow: hidden;
+}
+
+h1 {
+    padding-top: 2vh;
+    padding-left: 5vw;
+    font-size: xxx-large;
+    color: white;
+}
+
+#login-panel {
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 25px;
+    margin-left: 25vw;
+    margin-top: 15vh;
+    width: 50vw;
+    height: 50vh;
+    overflow: hidden;
+}
+
+#login-header {
+    background: linear-gradient(90deg, red, white);
+    color: white;
+    height: 5vh;
+    border-bottom: 3px solid black;
+    line-height: 3rem;
+}
+
+h2 {
+    padding-left: 5vw;
+}
+
+#username-input {
+    margin-top: 10%;
+    padding-left: 33%;
+}
+
+#password-input {
+    margin-top: 3%;
+    padding-left: 33%;
+}
+
+#submitBtn {
+    margin-top: 5%;
+    margin-left: 33%;
+    width: 32%;
+    height: 5vh;
+    text-align: center;
+    color: white;
+    background-color: red;
+    border-radius: 10px;
+    font-size: x-large;
+}
+
+label {
+    font-size: x-large;
+}
+
+
+
 #username {
-/*Placement for username input        */
+    width: 10vw;
+    height: 3vh;
+    font-size: x-large;
 }
 
 #password {
-/*    Placement for password input*/
+    margin-left: 6px;
+    width: 10vw;
+    height: 3vh;
+    font-size: x-large;
 }
 

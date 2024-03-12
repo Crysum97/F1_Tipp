@@ -7,18 +7,24 @@
     <script type="module" src="static/login.js"></script>
 </head>
 <body>
-<h1>F1-Tippspiel</h1>
+<div id="header">
+    <h1>F1-Tippspiel</h1>
+</div>
 <div id="login-panel">
-    <h2>Login</h2>
-    <div id="username-input">
-        <label for="username">Username:</label>
-        <input id="username" type="text">
+    <div id="login-header">
+        <h2>Login</h2>
     </div>
-    <div id="password-input">
-        <label for="password">Password:</label>
-        <input id="password" type="password">
-    </div>
-    <button type="submit">Login</button>
+    <login-content>
+        <div id="username-input">
+            <label for="username">Username:</label>
+            <input id="username" type="text">
+        </div>
+        <div id="password-input">
+            <label for="password">Password:</label>
+            <input id="password" type="password">
+        </div>
+    </login-content>
+    <button id="submitBtn" type="submit">Login</button>
 </div>
 </body>
 </html>
