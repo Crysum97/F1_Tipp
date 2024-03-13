@@ -3,6 +3,7 @@ from sqlite3 import OperationalError, IntegrityError
 import sqlite3
 from App.Config import ROOT_DIR
 from App.model.User import User
+from App.model.Team import Team
 
 
 def create_database():
@@ -89,3 +90,13 @@ def read_user_by_name(user_name):
         return User(id=result[0], name=result[1], pass_hash=result[2], salt=result[3])
     else:
         return None
+
+
+def read_teams():
+    query = "SELECT * FROM team"
+    con = sqlite3.connect(os.path.join(ROOT_DIR, "local.db"))
+    cursor = con.cursor()
+    result = cursor.execute(query).fetchall()
+    con.close()
+    if result is not None:
+        return [Team(id=row[0], name=row[1]) for row in result]

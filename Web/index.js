@@ -1,9 +1,27 @@
 import {getCookie} from "./Utility.js";
 
-function setup() {
+async function setup() {
+    await read_username();
+    await read_teams();
+}
+
+async function read_username() {
     const username = getCookie("username");
     const userDisplay = document.getElementById("username");
     userDisplay.innerHTML = username;
+}
+
+async function read_teams() {
+    let teams = await fetch("http://localhost/team/").then((result) => {
+        return result.json();
+    });
+
+    let content = "";
+    for (let i = 0; i < teams["teams"].length; i++) {
+        content += "<option value="+i+">"+ teams["teams"][i]["_Team__name"] + "</option>"
+    }
+    const combo_teams = document.getElementById("team-select");
+    combo_teams.innerHTML += content;
 }
 
 window.addEventListener("load", setup);

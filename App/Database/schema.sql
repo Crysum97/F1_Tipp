@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS driver (
     fk_team INTEGER,
     FOREIGN KEY(fk_team) REFERENCES team(id)
 );
-
+DELETE FROM sqlite_sequence;
 DELETE FROM team;
 
 INSERT INTO team (name) VALUES ("Ferrari");

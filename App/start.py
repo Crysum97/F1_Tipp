@@ -68,6 +68,11 @@ def delete_user_entry(user_id):
     return delete_user(user_id)
 
 
+@app.get("/team")
+def get_all_teams():
+    return {"teams": read_teams()}
+
+
 if __name__ == '__main__':
     create_database()
     user = User(name="Admin", password="admin", salt="0ec62")
