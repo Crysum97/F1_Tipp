@@ -1,7 +1,12 @@
 import {getCookie} from "./Utility.js";
 
-const cookie = getCookie("auth");
-console.log(cookie);
+function setup() {
+    const username = getCookie("username");
+    const userDisplay = document.getElementById("username");
+    userDisplay.innerHTML = username;
+}
+
+window.addEventListener("load", setup);
 
 let team = ""
 let driverOne = document.getElementById("member-one").value

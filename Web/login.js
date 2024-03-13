@@ -22,7 +22,7 @@ async function onSubmit(){
 
     // save auth key as cookie
     if (auth_json != null && auth_json.hasOwnProperty("key")) {
-            console.log("Access granted!");
+            console.log("Access granted!"),
             setCookie("username", user.value, 1);
             setCookie("auth", auth_json["key"], 1);
             window.location.href = "/bets";
