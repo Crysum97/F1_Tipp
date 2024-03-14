@@ -73,6 +73,11 @@ def get_all_teams():
     return {"teams": read_teams()}
 
 
+@app.get("/driver/{team_id}")
+def get_drivers(team_id: int):
+    return {"drivers": read_driver_by_team_id(team_id)}
+
+
 if __name__ == '__main__':
     create_database()
     user = User(name="Admin", password="admin", salt="0ec62")

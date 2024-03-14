@@ -92,6 +92,25 @@ def read_user_by_name(user_name):
         return None
 
 
+def read_driver_by_team_name(team_name):
+    query = f"SELECT first_name, last_name FROM driver JOIN team t on driver.fk_team = t.id" \
+            f" WHERE t.name == '{team_name}'"
+    con = sqlite3.connect(os.path.join(ROOT_DIR, "local.db"))
+    cursor = con.cursor()
+    result = cursor.execute(query).fetchall()
+    cursor.close()
+    return [row[0] + " " + row[1] for row in result]
+
+
+def read_driver_by_team_id(team_id: int):
+    query = f"SELECT first_name, last_name FROM driver JOIN team t on t.id = driver.fk_team" \
+            f" WHERE t.id = '{team_id}'"
+    con = sqlite3.connect(os.path.join(ROOT_DIR, "local.db"))
+    cursor = con.cursor()
+    result = cursor.execute(query)
+    return [row[0] + " " + row[1] for row in result]
+
+
 def read_teams():
     query = "SELECT * FROM team"
     con = sqlite3.connect(os.path.join(ROOT_DIR, "local.db"))

@@ -1,5 +1,7 @@
 import {getCookie} from "./Utility.js";
 
+let team_combo = document.getElementById("team-select");
+
 async function setup() {
     await read_username();
     await read_teams();
@@ -18,30 +20,27 @@ async function read_teams() {
 
     let content = "";
     for (let i = 0; i < teams["teams"].length; i++) {
-        content += "<option value="+i+">"+ teams["teams"][i]["_Team__name"] + "</option>"
+        content += "<option value="+(i + 1)+">"+ teams["teams"][i]["_Team__name"] + "</option>"
     }
     const combo_teams = document.getElementById("team-select");
     combo_teams.innerHTML += content;
 }
 
-window.addEventListener("load", setup);
+async function set_drivers() {
+    let team_value = team_combo.value;
+    let drivers = await fetch("http://localhost/driver/" + team_value)
+        .then((result) => result.json());
 
-let team = ""
-let driverOne = document.getElementById("member-one").value
-let driverTwo = document.getElementById("member-two").value
+    let driver_one = document.querySelector('label[for="member-one"]');
+    let driver_two = document.querySelector('label[for="member-two"]');
 
-if (driverOne < 0 && driverTwo < 0) {
-    var but = document.getElementById("WettButton");
-    but.disabled = true;
+    driver_one.textContent = drivers["drivers"][0];
+    driver_two.textContent = drivers["drivers"][1];
 }
 
-document.getElementById("team-select").addEventListener("change", function() {
-    team = this.value;
-    var labelone = document.querySelector('label[for="member-one"]');
-    labelone.textContent = "Mazepin:";
-    var labeltwo = document.querySelector('label[for="member-two"]');
-    labeltwo.textContent = "Latifi:";
-});
+
+window.addEventListener("load", setup);
+document.getElementById("team-select").addEventListener("change", set_drivers);
 
 async function bet() {
     var driverOne = document.getElementById("member-one").value
