@@ -1,9 +1,11 @@
 import {setCookie} from "./Utility.js";
 
-async function onSubmit(){
-    // access user input
+// access user input
     const user = document.getElementById("username");
     const pass = document.getElementById("password");
+
+async function onSubmit(){
+
 
     // get user data by name
     const json = await fetch("http://localhost/user/" + user.value)
@@ -44,4 +46,14 @@ async function sha256HashString(inputString) {
     return hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
 }
 
+function enterHandler(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("submitBtn").click();
+    }
+}
+
 document.querySelector('button').addEventListener('click', onSubmit);
+// register key press event listener to allow login on enter
+pass.addEventListener("keypress",enterHandler);
+user.addEventListener("keypress",enterHandler);
