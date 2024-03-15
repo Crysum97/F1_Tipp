@@ -9,9 +9,9 @@ from pydantic import BaseModel
 class UserModel(BaseModel):
     user_id: Optional[int] = None
     name: str
-    password: str
+    pass_hash: str
     salt: str
-    last_login: datetime
+    last_login: Optional[datetime] = None
 
 
 class User:

@@ -1,5 +1,7 @@
+import secrets
+
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
 from hashlib import sha256
@@ -21,6 +23,11 @@ def get_root():
 @app.get("/bets")
 def get_betting_page():
     return FileResponse("../Web/index.html")
+
+
+@app.get("/register")
+def get_register_page():
+    return FileResponse("../Web/registration_form.html")
 
 
 @app.get("/auth")
@@ -48,19 +55,25 @@ def get_user_entry(user_info: Union[int, str]):
         if result is not None:
             return result.__dict__()
         else:
-            return {}
+            raise HTTPException(status_code=404, detail="user not found")
     else:
         result = read_user_by_name(user_info)
         if result is not None:
             return result.__dict__()
         else:
-            return {}
+            raise HTTPException(status_code=404, detail="user not found")
 
 
 @app.post("/user")
 def post_user_entry(user_model: UserModel):
-    insert_user(User(name=user_model.name, password=user_model.password, salt=user_model.salt))
+    insert_user(User(name=user_model.name, pass_hash=user_model.pass_hash, salt=user_model.salt))
     return JSONResponse(content=read_user_by_name(user_model.name).__dict__())
+
+
+@app.get("/salt")
+def generate_salt():
+    salt = secrets.token_hex(3)[:5]
+    return {"salt": salt}
 
 
 @app.delete("/user/{user_id}")
@@ -80,6 +93,6 @@ def get_drivers(team_id: int):
 
 if __name__ == '__main__':
     create_database()
-    user = User(name="Admin", password="admin", salt="0ec62")
+    user = User(name="Admin", password="admin")
     insert_user(user)
     uvicorn.run(app, host="0.0.0.0", port=80)
