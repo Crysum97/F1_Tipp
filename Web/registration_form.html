@@ -5,20 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="module" src="static/register.js"></script>
+    <link rel="stylesheet" href="static/register.css">
     <title>Registrierungsformular</title>
 </head>
-<body>
-    <h2>Registrierungsformular</h2>
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username" required>
+    <body>
+    <div id="header">
+        <h1>F1-Tippspiel</h1>
+    </div>
+
+        <div id="register-panel">
+            <div id="register-header">
+                <h2>Registrierung</h2>
+            </div>
+
+            <div id="username-input">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+            </div>
+
+            <div id="password-input">
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+            </div>
+
+            <div>
+                <button id="registerBtn">Registrieren</button>
+            </div>
         </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" required>
-        </div>
-        <div>
-            <button id="registerBtn">Registrieren</button>
-        </div>
-</body>
+    </body>
 </html>
