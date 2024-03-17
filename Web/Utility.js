@@ -25,4 +25,8 @@ function setCookie(name, value, hours) {
     document.cookie = name + "=" + value + expires + "; path=/";
 }
 
-export {getCookie, setCookie};
+function deleteCookie(name) {
+    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
+
+export {getCookie, setCookie, deleteCookie};

@@ -1,10 +1,30 @@
-import {getCookie} from "./Utility.js";
+import {getCookie, deleteCookie} from "./Utility.js";
 
 let team_combo = document.getElementById("team-select");
 
 async function setup() {
     await read_username();
     await read_teams();
+    let user_profile = document.getElementById("user-profile");
+    user_profile.addEventListener("mouseover", show_menu);
+    user_profile.addEventListener("mouseleave", hide_menu);
+    user_profile.addEventListener("click", return_to_login);
+}
+
+function return_to_login() {
+    deleteCookie("username");
+    deleteCookie("auth");
+    window.location.replace("http://localhost");
+}
+
+function show_menu() {
+    let menu = document.getElementById("user-menu");
+    menu.style.visibility = "visible";
+}
+
+function hide_menu() {
+    let menu = document.getElementById("user-menu");
+    menu.style.visibility = "hidden";
 }
 
 async function read_username() {

@@ -1,6 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body { font-family: Arial, sans-serif; }
 
-.header { text-align: right; padding: 10px; }
+.header {
+    height: 10vh;
+    background: linear-gradient(90deg, red, white);
+}
+
+.header > h1 {
+    margin-top: 20px;
+    margin-left: 5vw;
+    float: left;
+    color: white;
+    font-size: xxx-large;
+}
+
+.header > * {
+}
+
+
+#user-profile {
+    position: relative;
+    float: right;
+    width: 10vw;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    line-height: 80px;
+    height: inherit;
+}
+
+#user-profile:hover {
+    background-color: #fc97a7;
+}
+
+
+#user-profile > * {
+    display: block;
+    height: inherit;
+    font-size: x-large;
+    border-left: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
+}
+
+#user-menu {
+    border: 1px solid black;
+    visibility: hidden;
+}
+
+#user-menu:hover {
+    background-color: lightgrey;
+    cursor: pointer;
+}
 
 .container { padding: 20px; }
 
