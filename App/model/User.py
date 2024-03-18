@@ -30,6 +30,10 @@ class User:
             self.__password = hash_sha256((kwargs.get("password") + self.__salt))
         else:
             self.__password = kwargs.get("pass_hash")
+        if "last_login" in kwargs:
+            self.__last_login = kwargs.get("last_login")
+        else:
+            self.__last_login = None
 
     def __dict__(self):
         return {"ID": self.__user_id, "Name": self.__name, "Password": self.__password, "Salt": self.__salt}

@@ -1,3 +1,7 @@
+import {check_login} from "./Utility.js";
+
+window.onload = () => check_login();
+
 async function register_user() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;

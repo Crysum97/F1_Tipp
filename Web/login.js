@@ -1,4 +1,6 @@
-import {setCookie} from "./Utility.js";
+import {getCookie, setCookie, check_login} from "./Utility.js";
+
+window.onload = () => check_login();
 
 // access user input
     const user = document.getElementById("username");
@@ -45,6 +47,8 @@ async function sha256HashString(inputString) {
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     return hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
 }
+
+
 
 function enterHandler(event) {
     if (event.key === "Enter") {

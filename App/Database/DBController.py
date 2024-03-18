@@ -87,7 +87,7 @@ def read_user_by_name(user_name):
     result = cursor.execute(query).fetchone()
     con.close()
     if result is not None:
-        return User(id=result[0], name=result[1], pass_hash=result[2], salt=result[3])
+        return User(id=result[0], name=result[1], pass_hash=result[2], salt=result[3], last_login=result[4])
     else:
         return None
 

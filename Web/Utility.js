@@ -29,4 +29,20 @@ function deleteCookie(name) {
     document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 
-export {getCookie, setCookie, deleteCookie};
+
+async function check_login() {
+        let user_cookie = getCookie("username");
+        let auth_cookie = getCookie("auth");
+
+        if(user_cookie == null || auth_cookie == null) return;
+
+
+        const auth = await fetch("http://localhost/auth/" + user_cookie + "?auth_key=" + auth_cookie)
+            .then((response) => response);
+
+        if (auth.status === 200) {
+            window.location.href = "http://localhost/bets";
+        }
+}
+
+export {getCookie, setCookie, deleteCookie, check_login};

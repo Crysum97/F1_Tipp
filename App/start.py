@@ -32,7 +32,6 @@ def get_register_page():
 
 @app.get("/auth")
 def auth_user(name: str, sha256_hash: str):
-    print(name + " " + sha256_hash)
     c_user = read_user_by_name(name)
     if c_user is not None and c_user.get_pass_hash() == sha256_hash:
         c_user.reauth()
@@ -41,6 +40,16 @@ def auth_user(name: str, sha256_hash: str):
         return JSONResponse(content={'key': key})
     else:
         return 500
+
+
+@app.get("/auth/{username}")
+def check_auth_key(username: str, auth_key: str):
+    c_user = read_user_by_name(username)
+    key = sha256((c_user.get_pass_hash() + str(c_user.get_last_login())).encode('utf-8')).hexdigest()
+    if key == auth_key:
+        return JSONResponse(status_code=200, content={"auth": "OK"})
+    else:
+        return JSONResponse(status_code=404, content={"auth": "FAIL"})
 
 
 @app.get("/user")
