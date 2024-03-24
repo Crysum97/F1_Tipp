@@ -6,9 +6,10 @@ async function setup() {
     await read_username();
     await read_teams();
     let user_profile = document.getElementById("user-profile");
+    let logout = document.getElementById("user-menu");
     user_profile.addEventListener("mouseover", show_menu);
     user_profile.addEventListener("mouseleave", hide_menu);
-    user_profile.addEventListener("click", return_to_login);
+    logout.addEventListener("click", return_to_login);
 }
 
 function return_to_login() {
