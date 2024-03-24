@@ -52,7 +52,7 @@ INSERT INTO driver (first_name, last_name, fk_team) VALUES ("Daniel", "Ricciardo
 INSERT INTO driver (first_name, last_name, fk_team) VALUES ("Yuki", "Tsunoda", 7);
 INSERT INTO driver (first_name, last_name, fk_team) VALUES ("Valtteri", "Bottas", 8);
 INSERT INTO driver (first_name, last_name, fk_team) VALUES ("Guanyu", "Zhou", 8);
-INSERT INTO driver (first_name, last_name, fk_team) VALUES ("Nico", "Huelkenberg", 9);
+INSERT INTO driver (first_name, last_name, fk_team) VALUES ("Nico", "Hülkenberg", 9);
 INSERT INTO driver (first_name, last_name, fk_team) VALUES ("Kevin", "Magnussen", 9);
 INSERT INTO driver (first_name, last_name, fk_team) VALUES ("Alexander", "Albon", 10);
 INSERT INTO driver (first_name, last_name, fk_team) VALUES ("Logan", "Sargeant", 10);
