@@ -12,7 +12,7 @@ body {
     left: 0;
     top: 0;
     height: 10vh;
-    background: linear-gradient(90deg, red, white);
+    background: linear-gradient(90deg, #961616, #efeee4);
     overflow: hidden;
 }
 
@@ -24,7 +24,7 @@ h1 {
 }
 
 #login-panel {
-    background-color: white;
+    background-color: #efeee4;
     border: 3px solid black;
     border-radius: 25px;
     margin-left: 25vw;
@@ -35,7 +35,7 @@ h1 {
 }
 
 #login-header {
-    background: linear-gradient(90deg, red, white);
+    background: linear-gradient(90deg, #961616, #efeee4);
     color: white;
     height: 5vh;
     border-bottom: 3px solid black;
@@ -62,8 +62,8 @@ h2 {
     width: 32%;
     height: 5vh;
     text-align: center;
-    color: white;
-    background-color: red;
+    color: #efeee4;
+    background-color: #961616;
     border-radius: 10px;
     font-size: x-large;
 }
