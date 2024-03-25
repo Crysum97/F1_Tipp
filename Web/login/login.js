@@ -1,4 +1,4 @@
-import {getCookie, setCookie, check_login} from "./Utility.js";
+import {getCookie, setCookie, check_login} from "../resources/Utility.js";
 
 window.onload = () => check_login();
 

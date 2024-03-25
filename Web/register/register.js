@@ -1,4 +1,4 @@
-import {check_login} from "./Utility.js";
+import {check_login} from "../resources/Utility.js";
 
 window.onload = () => check_login();
 

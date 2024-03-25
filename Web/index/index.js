@@ -1,4 +1,4 @@
-import {getCookie, deleteCookie} from "./Utility.js";
+import {getCookie, deleteCookie} from "../resources/Utility.js";
 
 let team_combo = document.getElementById("team-select");
 

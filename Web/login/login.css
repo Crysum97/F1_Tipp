@@ -3,17 +3,17 @@
     padding: 0;
 }
 
+body {
+    background: url("background.jpg");
+    background-size: 100%;
+}
+
 #header {
     left: 0;
     top: 0;
     height: 10vh;
     background: linear-gradient(90deg, red, white);
     overflow: hidden;
-}
-
-body {
-    background: url("./background.jpg");
-    background-size: 100%;
 }
 
 h1 {
@@ -23,11 +23,7 @@ h1 {
     color: white;
 }
 
-h2 {
-    padding-left: 5vw;
-}
-
-#register-panel {
+#login-panel {
     background-color: white;
     border: 3px solid black;
     border-radius: 25px;
@@ -38,12 +34,16 @@ h2 {
     overflow: hidden;
 }
 
-#register-header {
+#login-header {
     background: linear-gradient(90deg, red, white);
     color: white;
     height: 5vh;
     border-bottom: 3px solid black;
     line-height: 3rem;
+}
+
+h2 {
+    padding-left: 5vw;
 }
 
 #username-input {
@@ -55,6 +55,24 @@ h2 {
     margin-top: 3%;
     padding-left: 33%;
 }
+
+#submitBtn {
+    margin-top: 5%;
+    margin-left: 33%;
+    width: 32%;
+    height: 5vh;
+    text-align: center;
+    color: white;
+    background-color: red;
+    border-radius: 10px;
+    font-size: x-large;
+}
+
+label {
+    font-size: x-large;
+}
+
+
 
 #username {
     width: 10vw;
@@ -69,18 +87,3 @@ h2 {
     font-size: x-large;
 }
 
-label {
-    font-size: x-large;
-}
-
-#registerBtn {
-    margin-top: 5%;
-    margin-left: 33%;
-    width: 32%;
-    height: 5vh;
-    text-align: center;
-    color: white;
-    background-color: red;
-    border-radius: 10px;
-    font-size: x-large;
-}

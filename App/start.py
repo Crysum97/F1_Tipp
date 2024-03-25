@@ -17,17 +17,17 @@ app.mount("/static", StaticFiles(directory="../Web"), name="static")
 
 @app.get("/")
 def get_root():
-    return FileResponse("../Web/login.html")
+    return FileResponse("../Web/login/login.html")
 
 
 @app.get("/bets")
 def get_betting_page():
-    return FileResponse("../Web/index.html")
+    return FileResponse("../Web/index/index.html")
 
 
 @app.get("/register")
 def get_register_page():
-    return FileResponse("../Web/registration_form.html")
+    return FileResponse("../Web/Register/registration_form.html")
 
 
 @app.get("/auth")
