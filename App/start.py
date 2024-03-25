@@ -29,6 +29,10 @@ def get_betting_page():
 def get_register_page():
     return FileResponse("../Web/Register/registration_form.html")
 
+@app.get("/usersetting")
+def get_settings_page():
+    return FileResponse("../Web/settings/settings.html")
+
 
 @app.get("/auth")
 def auth_user(name: str, sha256_hash: str):
