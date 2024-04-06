@@ -26,35 +26,30 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="member-one">Platzierung:</label>
-                <input id="member-one" type="number" onchange="bet()" placeholder="Platzierung eingeben">
+                <label for="member-one" id="driver_one">Platzierung:</label>
+                <input id="member-one" type="number" placeholder="Platzierung eingeben">
             </div>
          <div class="form-group">
-                <label for="member-two">Platzierung:</label>
-                <input id="member-two" type="number" onchange="bet()" placeholder="Platzierung eingeben">
+                <label for="member-two" id="driver_two">Platzierung:</label>
+                <input id="member-two" type="number" placeholder="Platzierung eingeben">
             </div>
             <div class="form-group">
                 <button id=WettButton>Wette Einloggen</button>
             </div>
         </form>
-        <table class="table">
+        <table class="bettable" id="betTable">
             <thead>
                 <tr>
                     <th>User</th>
-                    <th>Abgegebene Wette</th>
-                    <th>Aktueller Punktestand</th>
-                    <th>Voraussichtliche Platzierung</th>
+                    <th>Team</th>
+                    <th>Fahrer 1</th>
+                    <th class="pl1">PL</th>
+                    <th>Fahrer 2</th>
+                    <th class="pl2">PL</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Benutzerdaten hier -->
-                <tr>
-                    <td>Benutzername</td>
-                    <td>Team / Mitglied / Platzierung</td>
-                    <td>Punkte</td>
-                    <td>Platzierung bei richtiger Wette</td>
-                </tr>
-                <!-- Weitere Zeilen für jeden Benutzer -->
+
             </tbody>
         </table>
     </div>

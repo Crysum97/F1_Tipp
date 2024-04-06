@@ -4,6 +4,7 @@ import sqlite3
 from App.Config import ROOT_DIR
 from App.model.User import User
 from App.model.Team import Team
+from App.model.Bet import Bet
 
 
 def create_database():
@@ -119,3 +120,28 @@ def read_teams():
     con.close()
     if result is not None:
         return [Team(id=row[0], name=row[1]) for row in result]
+
+
+def insert_bet(bet_obj):
+    query = (f"INSERT INTO bet (user_id, team_id, first_driver, first_pl, second_driver, second_pl) VALUES "
+             f"('{bet_obj.get_user_id()}', '{bet_obj.get_team_id()}', '{bet_obj.get_first_driver()}', "
+             f"'{bet_obj.get_first_pl()}', '{bet_obj.get_second_driver()}', '{bet_obj.get_second_pl()}')")
+    print(query)
+    con = sqlite3.connect(os.path.join(ROOT_DIR, "local.db"))
+    cursor = con.cursor()
+    try:
+        cursor.execute(query)
+    except IntegrityError:
+        pass
+    con.commit()
+    con.close()
+
+
+def read_bets():
+    query = "SELECT * FROM bet"
+    con = sqlite3.connect(os.path.join(ROOT_DIR, "local.db"))
+    cursor = con.cursor()
+    result = cursor.execute(query).fetchall()
+    con.close()
+    if result is not None:
+        return [Bet(user_id=row[1], team_id=row[2], first_driver=row[3], first_pl=[4], second_driver=row[5], second_pl=[6]) for row in result]

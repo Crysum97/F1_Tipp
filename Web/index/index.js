@@ -60,17 +60,66 @@ async function set_drivers() {
 }
 
 
-window.addEventListener("load", setup);
-document.getElementById("team-select").addEventListener("change", set_drivers);
+async function set_bet() {
+    let bets = await fetch("http://localhost/bet")
+        .then((result) => result.json());
 
-async function bet() {
-    var driverOne = document.getElementById("member-one").value
-    var driverTwo = document.getElementById("member-two").value
-    var but = document.getElementById("WettButton");
+    let tbodyRef = document.getElementById('betTable').getElementsByTagName('tbody')[0]
 
-    if (driverTwo > -1) {
-        but.disabled = false;
-    } else {
-        but.disabled = true;
+    for (let i = 0; i < bets["bets"].length; i++) {
+        let values = Object.values(bets["bets"][i])
+
+        let newRow = tbodyRef.insertRow();
+        let userCell = newRow.insertCell(0);
+
+        userCell.innerHTML = values[1];
+        let teamCell = newRow.insertCell(1);
+
+        teamCell.innerHTML = values[2];
+        let driveroneCell = newRow.insertCell(2);
+
+        driveroneCell.innerHTML = values[3];
+        let ploneCell = newRow.insertCell(3);
+        ploneCell.innerHTML = values[4];
+
+        let drivertwoCell = newRow.insertCell(4);
+        drivertwoCell.innerHTML = values[5];
+
+        let pltwoCell = newRow.insertCell(5);
+        pltwoCell.innerHTML = values[6];
     }
 }
+
+async function send_bet() {
+    const pl_one  = document.getElementById("member-one").value;
+    const pl_two = document.getElementById("member-two").value;
+
+    const driver_one = document.getElementById("driver_one").innerHTML;
+    const driver_two = document.getElementById("driver_two").innerHTML;
+    var selectElement = document.getElementById('team-select');
+    const selectedText = selectElement.options[selectElement.selectedIndex].text;
+    const data = {
+        user_id: 1,
+        team_id: 2,
+        first_driver: driver_one,
+        first_pl: parseInt(pl_one),
+        second_driver: driver_two,
+        second_pl: parseInt(pl_two)
+    }
+
+    await fetch("http://localhost/insertbet", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+}
+
+window.addEventListener("load", setup);
+document.getElementById("team-select").addEventListener("change", set_drivers);
+window.addEventListener("load", set_bet);
+document.getElementById("WettButton").addEventListener("click", send_bet)
+
+
+

@@ -8,6 +8,7 @@ from hashlib import sha256
 
 from Database.DBController import *
 from App.model.User import User, UserModel
+from App.model.Bet import Bet, BetModel
 from fastapi.encoders import jsonable_encoder
 from typing import Union
 
@@ -28,6 +29,7 @@ def get_betting_page():
 @app.get("/register")
 def get_register_page():
     return FileResponse("../Web/Register/registration_form.html")
+
 
 @app.get("/usersetting")
 def get_settings_page():
@@ -104,8 +106,20 @@ def get_drivers(team_id: int):
     return {"drivers": read_driver_by_team_id(team_id)}
 
 
+@app.get("/bet")
+def get_bets():
+    return {"bets": read_bets()}
+
+@app.post("/insertbet")
+def inser_bet(bet_model: BetModel):
+    print(bet_model)
+
+
+
 if __name__ == '__main__':
     create_database()
     user = User(name="Admin", password="admin")
+    #bet = Bet(user_id=1, team_id=3, first_driver="Charles Sainz", second_driver="Carlos Leclerc", first_pl=1, second_pl=4)
     insert_user(user)
+    #insert_bet(bet)
     uvicorn.run(app, host="0.0.0.0", port=80)

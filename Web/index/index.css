@@ -65,12 +65,20 @@ body {
 
 .form-group { margin-bottom: 20px; }
 
-.table {
-    width: 100%;
+.bettable {
+    width: 50%;
     border-collapse: collapse;
     background-color: #efeee4;
 }
 
-.table, .table th, .table td { border: 1px solid black; }
+.pl2 .pl1 {
+    width: fit-content;
+}
 
-.table th, .table td { padding: 10px; text-align: left; }
+.bettable .pl1 {
+    border-right: 4px double black;
+  }
+
+.bettable, .bettable th, .bettable td { border: 1px solid black; }
+
+.bettable th, .bettable td { padding: 10px; text-align: left; }

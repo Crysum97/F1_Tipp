@@ -8,6 +8,18 @@ CREATE TABLE IF NOT EXISTS user (
     last_login DATETIME
 );
 
+CREATE TABLE IF NOT EXISTS bet (
+    id INTEGER primary key AUTOINCREMENT,
+    user_id INTEGER,
+    team_id INTEGER,
+    first_driver VARCHAR,
+    first_pl INTEGER,
+    second_driver VARCHAR,
+    second_pl INTEGER,
+    FOREIGN KEY(user_id) REFERENCES user(id),
+    FOREIGN KEY(team_id) REFERENCES team(id)
+);
+
 CREATE TABLE IF NOT EXISTS team (
     id INTEGER primary key AUTOINCREMENT,
     name VARCHAR unique
