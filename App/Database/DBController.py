@@ -93,6 +93,29 @@ def read_user_by_name(user_name):
         return None
 
 
+def read_team_by_name(team_name):
+    query = f"SELECT * FROM team WHERE name == '{team_name}'"
+    con = sqlite3.connect(os.path.join(ROOT_DIR, "local.db"))
+    cursor = con.cursor()
+    result = cursor.execute(query).fetchone()
+    con.close()
+    if result is not None:
+        return Team(id=result[0], name=result[1])
+    else:
+        return None
+
+def read_team_by_id(id):
+    query = f"SELECT * FROM team WHERE id == '{id}'"
+    con = sqlite3.connect(os.path.join(ROOT_DIR, "local.db"))
+    cursor = con.cursor()
+    result = cursor.execute(query).fetchone()
+    con.close()
+    if result is not None:
+        return Team(id=result[0], name=result[1])
+    else:
+        return None
+
+
 def read_driver_by_team_name(team_name):
     query = f"SELECT first_name, last_name FROM driver JOIN team t on driver.fk_team = t.id" \
             f" WHERE t.name == '{team_name}'"
@@ -144,4 +167,5 @@ def read_bets():
     result = cursor.execute(query).fetchall()
     con.close()
     if result is not None:
-        return [Bet(user_id=row[1], team_id=row[2], first_driver=row[3], first_pl=[4], second_driver=row[5], second_pl=[6]) for row in result]
+        return [Bet(user=read_user(row[1]).get_name(), team=read_team_by_id(row[2]).get_name(), first_driver=row[3], first_pl=row[4], second_driver=row[5],
+                    second_pl=row[6]) for row in result]

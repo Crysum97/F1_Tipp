@@ -112,7 +112,10 @@ def get_bets():
 
 @app.post("/insertbet")
 def inser_bet(bet_model: BetModel):
-    print(bet_model)
+    user_id = read_user_by_name(bet_model.user).get_id()
+    team_id = read_team_by_name(bet_model.team).get_id()
+    insert_bet(Bet(user_id=user_id, team_id=team_id, first_driver=bet_model.first_driver, first_pl=bet_model.first_pl,
+                   second_driver=bet_model.second_driver, second_pl=bet_model.second_pl))
 
 
 

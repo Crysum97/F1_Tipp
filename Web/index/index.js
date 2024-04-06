@@ -68,25 +68,25 @@ async function set_bet() {
 
     for (let i = 0; i < bets["bets"].length; i++) {
         let values = Object.values(bets["bets"][i])
-
+        console.log(values)
         let newRow = tbodyRef.insertRow();
         let userCell = newRow.insertCell(0);
 
-        userCell.innerHTML = values[1];
+        userCell.innerHTML = values[0];
         let teamCell = newRow.insertCell(1);
 
-        teamCell.innerHTML = values[2];
+        teamCell.innerHTML = values[1];
         let driveroneCell = newRow.insertCell(2);
 
-        driveroneCell.innerHTML = values[3];
+        driveroneCell.innerHTML = values[2];
         let ploneCell = newRow.insertCell(3);
-        ploneCell.innerHTML = values[4];
+        ploneCell.innerHTML = values[3];
 
         let drivertwoCell = newRow.insertCell(4);
-        drivertwoCell.innerHTML = values[5];
+        drivertwoCell.innerHTML = values[4];
 
         let pltwoCell = newRow.insertCell(5);
-        pltwoCell.innerHTML = values[6];
+        pltwoCell.innerHTML = values[5];
     }
 }
 
@@ -96,9 +96,12 @@ async function send_bet() {
 
     const driver_one = document.getElementById("driver_one").innerHTML;
     const driver_two = document.getElementById("driver_two").innerHTML;
-    var selectElement = document.getElementById('team-select');
+    let selectElement = document.getElementById('team-select');
     const team = selectElement.options[selectElement.selectedIndex].text;
     const user = getCookie("username");
+
+
+
     const data = {
         user: user,
         team: team,

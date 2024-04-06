@@ -6,8 +6,8 @@ class BetModel(BaseModel):
     id: Optional[int] = None
     user_id: Optional[int] = None
     user: str
-    team: str
-    team_id: Optional[int]
+    team: Optional[str] = None
+    team_id: Optional[int] = None
     first_driver: str
     first_pl: int
     second_driver: str
@@ -29,10 +29,11 @@ class Bet:
             self.__id = kwargs.get("id")
         if "user_id" in kwargs:
             self.__user_id = kwargs.get("user_id")
-        if "team_id" in kwargs:
-            self.__team_id = kwargs.get("team_id")
         self.__user = kwargs.get("user")
-        self.__team = kwargs.get("team")
+        if "team" in kwargs:
+            self.__team = kwargs.get("team")
+        if "team_id"  in kwargs:
+            self.__team_id = kwargs.get("team_id")
         self.__first_driver = kwargs.get("first_driver")
         self.__first_pl = kwargs.get("first_pl")
         self.__second_driver = kwargs.get("second_driver")
