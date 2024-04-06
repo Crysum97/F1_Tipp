@@ -4,8 +4,10 @@ from typing import Optional
 
 class BetModel(BaseModel):
     id: Optional[int] = None
-    user_id: int
-    team_id: int
+    user_id: Optional[int] = None
+    user: str
+    team: str
+    team_id: Optional[int]
     first_driver: str
     first_pl: int
     second_driver: str
@@ -14,6 +16,8 @@ class BetModel(BaseModel):
 class Bet:
     __id = None
     __user_id = None
+    __user = None
+    __team = None
     __team_id = None
     __first_driver = None
     __first_pl = None
@@ -21,16 +25,27 @@ class Bet:
     __second_pl = None
 
     def __init__(self, **kwargs):
-        self.__id = kwargs.get("id")
-        self.__user_id = kwargs.get("user_id")
-        self.__team_id = kwargs.get("team_id")
+        if "id" in kwargs:
+            self.__id = kwargs.get("id")
+        if "user_id" in kwargs:
+            self.__user_id = kwargs.get("user_id")
+        if "team_id" in kwargs:
+            self.__team_id = kwargs.get("team_id")
+        self.__user = kwargs.get("user")
+        self.__team = kwargs.get("team")
         self.__first_driver = kwargs.get("first_driver")
         self.__first_pl = kwargs.get("first_pl")
         self.__second_driver = kwargs.get("second_driver")
         self.__second_pl = kwargs.get("second_pl")
 
+
+    def get_team(self):
+        return self.__team
     def get_user_id(self):
         return self.__user_id
+
+    def get_user(self):
+        return self.__user
 
     def get_team_id(self):
         return self.__team_id

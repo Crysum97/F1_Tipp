@@ -97,15 +97,16 @@ async function send_bet() {
     const driver_one = document.getElementById("driver_one").innerHTML;
     const driver_two = document.getElementById("driver_two").innerHTML;
     var selectElement = document.getElementById('team-select');
-    const selectedText = selectElement.options[selectElement.selectedIndex].text;
+    const team = selectElement.options[selectElement.selectedIndex].text;
+    const user = getCookie("username");
     const data = {
-        user_id: 1,
-        team_id: 2,
+        user: user,
+        team: team,
         first_driver: driver_one,
         first_pl: parseInt(pl_one),
         second_driver: driver_two,
         second_pl: parseInt(pl_two)
-    }
+    };
 
     await fetch("http://localhost/insertbet", {
         method: 'POST',
