@@ -18,20 +18,20 @@
         </div>
     </div>
     <div class="container">
-        <form>
+        <form id="form">
             <div class="form-group">
-                <label for="team-select">Team auswählen:</label>
+                <label for="team-select", id="selector-label">Team auswählen:</label>
                 <select id="team-select">
-                    <option value="None">...</option>
+                    <option value="None", id="team-option">...</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="member-one" id="driver_one">Platzierung:</label>
-                <input id="member-one" type="number" placeholder="Platzierung eingeben">
+                <input id="member-one" type="number" placeholder="PL">
             </div>
          <div class="form-group">
                 <label for="member-two" id="driver_two">Platzierung:</label>
-                <input id="member-two" type="number" placeholder="Platzierung eingeben">
+                <input id="member-two" type="number" placeholder="PL">
             </div>
             <div class="form-group">
                 <button id=WettButton>Wette Einloggen</button>
