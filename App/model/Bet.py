@@ -12,6 +12,8 @@ class BetModel(BaseModel):
     first_pl: int
     second_driver: str
     second_pl: int
+    country: str
+
 
 class Bet:
     __id = None
@@ -23,6 +25,7 @@ class Bet:
     __first_pl = None
     __second_driver = None
     __second_pl = None
+    __country = None
 
     def __init__(self, **kwargs):
         if "id" in kwargs:
@@ -32,16 +35,20 @@ class Bet:
         self.__user = kwargs.get("user")
         if "team" in kwargs:
             self.__team = kwargs.get("team")
-        if "team_id"  in kwargs:
+        if "team_id" in kwargs:
             self.__team_id = kwargs.get("team_id")
         self.__first_driver = kwargs.get("first_driver")
         self.__first_pl = kwargs.get("first_pl")
         self.__second_driver = kwargs.get("second_driver")
         self.__second_pl = kwargs.get("second_pl")
+        self.__country = kwargs.get("country")
 
+    def get_country(self):
+        return self.__country
 
     def get_team(self):
         return self.__team
+
     def get_user_id(self):
         return self.__user_id
 

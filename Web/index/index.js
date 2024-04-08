@@ -68,7 +68,6 @@ async function set_bet() {
 
     for (let i = 0; i < bets["bets"].length; i++) {
         let values = Object.values(bets["bets"][i])
-        console.log(values)
         let newRow = tbodyRef.insertRow();
         let userCell = newRow.insertCell(0);
 

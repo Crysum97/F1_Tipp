@@ -110,12 +110,21 @@ def get_drivers(team_id: int):
 def get_bets():
     return {"bets": read_bets()}
 
+
 @app.post("/insertbet")
 def inser_bet(bet_model: BetModel):
     user_id = read_user_by_name(bet_model.user).get_id()
     team_id = read_team_by_name(bet_model.team).get_id()
-    insert_bet(Bet(user_id=user_id, team_id=team_id, first_driver=bet_model.first_driver, first_pl=bet_model.first_pl,
-                   second_driver=bet_model.second_driver, second_pl=bet_model.second_pl))
+    number_of_driver = count_drivers()
+    first = int(bet_model.first_pl)
+    second = int(bet_model.second_pl)
+    len_first = len(str(bet_model.first_pl))
+    len_second = len(str(bet_model.second_pl))
+    if (len_first <= 2 and len_second <= 2) and (first <= number_of_driver and second <= number_of_driver):
+        insert_bet(Bet(user_id=user_id, team_id=team_id, first_driver=bet_model.first_driver, first_pl=bet_model.first_pl,
+                    second_driver=bet_model.second_driver, second_pl=bet_model.second_pl))
+    else:
+        print("false input")
 
 
 

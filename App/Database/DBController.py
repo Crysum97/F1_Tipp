@@ -1,3 +1,4 @@
+import datetime
 import os.path
 from sqlite3 import OperationalError, IntegrityError
 import sqlite3
@@ -104,6 +105,7 @@ def read_team_by_name(team_name):
     else:
         return None
 
+
 def read_team_by_id(id):
     query = f"SELECT * FROM team WHERE id == '{id}'"
     con = sqlite3.connect(os.path.join(ROOT_DIR, "local.db"))
@@ -146,9 +148,9 @@ def read_teams():
 
 
 def insert_bet(bet_obj):
-    query = (f"INSERT INTO bet (user_id, team_id, first_driver, first_pl, second_driver, second_pl) VALUES "
+    query = (f"INSERT INTO bet (user_id, team_id, first_driver, first_pl, second_driver, second_pl, country, bet_date) VALUES "
              f"('{bet_obj.get_user_id()}', '{bet_obj.get_team_id()}', '{bet_obj.get_first_driver()}', "
-             f"'{bet_obj.get_first_pl()}', '{bet_obj.get_second_driver()}', '{bet_obj.get_second_pl()}')")
+             f"'{bet_obj.get_first_pl()}', '{bet_obj.get_second_driver()}', '{bet_obj.get_second_pl()}', '{bet_obj.get_country()}', '{datetime.datetime.now()}')")
     print(query)
     con = sqlite3.connect(os.path.join(ROOT_DIR, "local.db"))
     cursor = con.cursor()
@@ -167,5 +169,17 @@ def read_bets():
     result = cursor.execute(query).fetchall()
     con.close()
     if result is not None:
-        return [Bet(user=read_user(row[1]).get_name(), team=read_team_by_id(row[2]).get_name(), first_driver=row[3], first_pl=row[4], second_driver=row[5],
+        return [Bet(user=read_user(row[1]).get_name(), team=read_team_by_id(row[2]).get_name(), first_driver=row[3],
+                    first_pl=row[4], second_driver=row[5],
                     second_pl=row[6]) for row in result]
+
+
+def count_drivers():
+    query = "SELECT COUNT(*) FROM driver"
+    con = sqlite3.connect(os.path.join(ROOT_DIR, "local.db"))
+    cursor = con.cursor()
+    result = cursor.execute(query).fetchone()[0]
+    con.close()
+    if result is not None:
+        return result
+

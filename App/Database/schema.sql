@@ -8,6 +8,16 @@ CREATE TABLE IF NOT EXISTS user (
     last_login DATETIME
 );
 
+CREATE TABLE IF NOT EXISTS userscore (
+    id INTEGER primary key AUTOINCREMENT,
+    user_id INTEGER,
+    season INTEGER,
+    race_points INTEGER,
+    qualy_points INTEGER,
+    const_points INTEGER,
+    FOREIGN KEY(user_id) REFERENCES user(id)
+);
+
 CREATE TABLE IF NOT EXISTS bet (
     id INTEGER primary key AUTOINCREMENT,
     user_id INTEGER,
@@ -16,6 +26,8 @@ CREATE TABLE IF NOT EXISTS bet (
     first_pl INTEGER,
     second_driver VARCHAR,
     second_pl INTEGER,
+    country VARCHAR,
+    bet_date VARCHAR,
     FOREIGN KEY(user_id) REFERENCES user(id),
     FOREIGN KEY(team_id) REFERENCES team(id)
 );

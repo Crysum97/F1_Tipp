@@ -122,9 +122,14 @@ body::before {
     background-color: rgba(239, 238, 228, 0.70);
 }
 
-#driver_one, #driver_two, #selector-label {
+#driver_one, #driver_two, #selector-label{
     width: 75px;
     padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#ch_one, #ch_two {
     font-size: 16px;
     font-weight: bold;
 }

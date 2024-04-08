@@ -1,0 +1,23 @@
+{
+    "race": [
+        {
+            "points": 5,
+            "bothMatchFactor": 2,
+            "dnfMatch": 4,
+            "dnfNumber": 0
+
+        }
+    ],
+    "qualifying":[
+        {
+            "points": 3,
+            "bothMatchFactor": 1.5
+        }
+    ],
+    "sprint": [
+        {
+            "points": 2,
+            "bothMatchFactor": 1
+        }
+    ]
+}
