@@ -11,7 +11,6 @@
 <body>
     <div class="header">
         <h1>F1-Tippspiel</h1>
-
         <div id="user-profile">
             <div class="center" id="username">Benutzername</div>
             <div id="user-menu">Logout</div>
@@ -19,6 +18,9 @@
     </div>
     <div class="container">
         <form id="form">
+            <div class="form-group">
+                <label id="event">Event</label>
+            </div>
             <div class="form-group">
                 <label for="team-select", id="selector-label">Team auswählen:</label>
                 <select id="team-select">
@@ -37,8 +39,9 @@
                 <button id=WettButton>Wette Einloggen</button>
             </div>
         </form>
-        <table class="bettable" id="betTable">
-            <thead>
+        <div>
+            <table class="bettable" id="betTable">
+                <thead>
                 <tr>
                     <th>User</th>
                     <th>Team</th>
@@ -48,11 +51,13 @@
                     <th class="pl2">PL</th>
                     <th>Event</th>
                 </tr>
-            </thead>
-            <tbody>
-            </tbody>
+                </thead>
+                <tbody>
+                </tbody>
         </table>
-                <table id="BetScore">
+        </div>
+        <div>
+            <table id="BetScore">
             <thead>
             <tr>
                 <th>User</th>
@@ -63,6 +68,7 @@
             <tbody>
             </tbody>
         </table>
+        </div>
     </div>
 </body>
 </html>

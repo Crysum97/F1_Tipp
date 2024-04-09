@@ -34,6 +34,17 @@ async function read_username() {
     userDisplay.innerHTML = username;
 }
 
+async function set_event() {
+    let event = await fetch("https://localhost/catchevent/").then((result) => {
+        return result.json();
+    });
+    console.log(event
+
+
+    )
+    const eventDisplay = document.getElementById("event")
+}
+
 async function read_teams() {
     let teams = await fetch("http://localhost/team/").then((result) => {
         return result.json();

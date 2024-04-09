@@ -129,7 +129,9 @@ def inser_bet(bet_model: BetModel):
     else:
         print("false input")
 
-
+@app.get("/catchevent")
+def event():
+    return {"event": get_upcoming_event().get("Event").get("Name")}
 
 if __name__ == '__main__':
     create_database()
