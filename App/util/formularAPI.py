@@ -3,6 +3,7 @@ import pandas
 import requests
 from xml.etree import ElementTree as ET
 
+
 def get_remaining_events():
     call = pandas.DataFrame(fastf1.get_events_remaining())
     return [{"Event": {"Name": row["EventName"], "Country": row["Country"], "Date": row["EventDate"]},
@@ -11,13 +12,18 @@ def get_remaining_events():
              row["Session5"]: {"Date": row["Session5Date"]}, row["Session5"]: {"Date": row["Session5Date"]}}
             for i, row in call.iterrows()]
 
+
+def get_upcoming_event():
+    return get_remaining_events()[0]
+
+
 def get_last_result():
     call = requests.get('http://ergast.com/api/f1/current/last/results')
     if call.status_code == 200:
         content = call.text
         tree = ET.fromstring(content)
         ns = {'mrd': 'http://ergast.com/mrd/1.5'}
-        results_list = []
+        results_dict = {}
 
         for result in tree.findall(".//mrd:Result", ns):
             position = result.attrib['position']
@@ -27,12 +33,12 @@ def get_last_result():
             status = result.find('mrd:Status', ns).text
             full_name = f"{given_name} {family_name}"
 
-            results_list.append({full_name: {"Position": position, "Status": status}})
+            results_dict[full_name] = {"Position": position, "Status": status}
         meta = tree.findall(".//mrd:Race", ns)[0]
         season = meta.attrib['season']
         name = meta.find('mrd:RaceName', ns).text
-        results_list.insert(0, {"Name": name, "Season": season})
-        return results_list
+        results_dict["Event"] = {"Name": name, "Season": season}
+        return results_dict
     else:
         return []
 
@@ -43,7 +49,7 @@ def get_current_driverstanding():
         content = call.text
         tree = ET.fromstring(content)
         ns = {'mrd': 'http://ergast.com/mrd/1.5'}
-        results_list = []
+        results_dict = {}
         for result in tree.findall(".//mrd:DriverStanding", ns):
             position = result.attrib['position']
             points = result.attrib['points']
@@ -51,11 +57,22 @@ def get_current_driverstanding():
             given_name = driver.find('mrd:GivenName', ns).text
             family_name = driver.find('mrd:FamilyName', ns).text
             full_name = f"{given_name} {family_name}"
-
-            results_list.append({full_name: {"Position": position, "Points": points}})
-        return results_list
+            results_dict[full_name] = {"Position": position, "Points": points}
+        return results_dict
     else:
-        return []
+        return {}
+
+
+def get_current_driverstanding_by_name(driver_name):
+    driver_dict = get_current_driverstanding()
+    return driver_dict.get(driver_name)
+
+
+def get_last_result_by_name(driver_name):
+    result = get_last_result()
+    re = [result.get(driver_name), result.get("Event")]
+    return re
+
 
 def get_current_constructorstanding():
     call = requests.get("http://ergast.com/api/f1/current/constructorStandings")
@@ -63,17 +80,14 @@ def get_current_constructorstanding():
         content = call.text
         tree = ET.fromstring(content)
         ns = {'mrd': 'http://ergast.com/mrd/1.5'}
-        results_list = []
+        results_dict = {}
         for result in tree.findall(".//mrd:ConstructorStanding", ns):
             position = result.attrib['position']
             points = result.attrib['points']
             constructor = result.find('mrd:Constructor', ns)
             name = constructor.find('mrd:Name', ns).text
-            results_list.append({name: {"Position": position, "Points": points}})
-        return results_list
+            results_dict[name] = {"Position": position, "Points": points}
+        return results_dict
     else:
-        return []
+        return {}
 
-
-if __name__ == '__main__':
-    print(get_current_constructorstanding())

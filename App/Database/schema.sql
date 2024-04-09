@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS bet (
     first_pl INTEGER,
     second_driver VARCHAR,
     second_pl INTEGER,
-    country VARCHAR,
+    event_name VARCHAR,
     bet_date VARCHAR,
     FOREIGN KEY(user_id) REFERENCES user(id),
     FOREIGN KEY(team_id) REFERENCES team(id)
@@ -52,10 +52,10 @@ INSERT INTO team (name) VALUES ("Mercedes");
 INSERT INTO team (name) VALUES ("Red Bull");
 INSERT INTO team (name) VALUES ("McLaren");
 INSERT INTO team (name) VALUES ("Aston Martin");
-INSERT INTO team (name) VALUES ("Alpine");
-INSERT INTO team (name) VALUES ("Racing Bulls");
+INSERT INTO team (name) VALUES ("Alpine F1 Team");
+INSERT INTO team (name) VALUES ("RB F1 Team");
 INSERT INTO team (name) VALUES ("Sauber");
-INSERT INTO team (name) VALUES ("Haas");
+INSERT INTO team (name) VALUES ("Haas F1 Team");
 INSERT INTO team (name) VALUES ("Williams");
 
 DELETE FROM driver;
@@ -65,7 +65,7 @@ INSERT INTO driver (first_name, last_name, fk_team) VALUES ("Carlos", "Sainz", 1
 INSERT INTO driver (first_name, last_name, fk_team) VALUES ("Lewis", "Hamilton", 2);
 INSERT INTO driver (first_name, last_name, fk_team) VALUES ("George", "Russel", 2);
 INSERT INTO driver (first_name, last_name, fk_team) VALUES ("Max", "Verstappen", 3);
-INSERT INTO driver (first_name, last_name, fk_team) VALUES ("Sergio", "Perez", 3);
+INSERT INTO driver (first_name, last_name, fk_team) VALUES ("Sergio", "Pérez", 3);
 INSERT INTO driver (first_name, last_name, fk_team) VALUES ("Lando", "Norris", 4);
 INSERT INTO driver (first_name, last_name, fk_team) VALUES ("Oscar", "Pisatri", 4);
 INSERT INTO driver (first_name, last_name, fk_team) VALUES ("Fernando", "Alonso", 5);
