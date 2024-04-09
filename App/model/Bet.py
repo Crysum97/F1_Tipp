@@ -12,7 +12,7 @@ class BetModel(BaseModel):
     first_pl: int
     second_driver: str
     second_pl: int
-    country: str
+    event: Optional[str] = None
 
 
 class Bet:
@@ -25,7 +25,7 @@ class Bet:
     __first_pl = None
     __second_driver = None
     __second_pl = None
-    __country = None
+    __event = None
 
     def __init__(self, **kwargs):
         if "id" in kwargs:
@@ -41,10 +41,11 @@ class Bet:
         self.__first_pl = kwargs.get("first_pl")
         self.__second_driver = kwargs.get("second_driver")
         self.__second_pl = kwargs.get("second_pl")
-        self.__country = kwargs.get("country")
+        if "event" in kwargs:
+            self.__event = kwargs.get("event")
 
-    def get_country(self):
-        return self.__country
+    def get_event(self):
+        return self.__event
 
     def get_team(self):
         return self.__team

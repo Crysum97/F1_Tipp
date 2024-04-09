@@ -11,6 +11,7 @@ from App.model.User import User, UserModel
 from App.model.Bet import Bet, BetModel
 from fastapi.encoders import jsonable_encoder
 from typing import Union
+from util.formularAPI import *
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="../Web"), name="static")
@@ -120,9 +121,11 @@ def inser_bet(bet_model: BetModel):
     second = int(bet_model.second_pl)
     len_first = len(str(bet_model.first_pl))
     len_second = len(str(bet_model.second_pl))
+    event = get_upcoming_event().get("Event").get("Name")
+
     if (len_first <= 2 and len_second <= 2) and (first <= number_of_driver and second <= number_of_driver):
         insert_bet(Bet(user_id=user_id, team_id=team_id, first_driver=bet_model.first_driver, first_pl=bet_model.first_pl,
-                    second_driver=bet_model.second_driver, second_pl=bet_model.second_pl))
+                    second_driver=bet_model.second_driver, second_pl=bet_model.second_pl, event=event))
     else:
         print("false input")
 
@@ -131,7 +134,5 @@ def inser_bet(bet_model: BetModel):
 if __name__ == '__main__':
     create_database()
     user = User(name="Admin", password="admin")
-    #bet = Bet(user_id=1, team_id=3, first_driver="Charles Sainz", second_driver="Carlos Leclerc", first_pl=1, second_pl=4)
     insert_user(user)
-    #insert_bet(bet)
     uvicorn.run(app, host="0.0.0.0", port=80)
