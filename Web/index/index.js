@@ -5,6 +5,11 @@ let team_combo = document.getElementById("team-select");
 async function setup() {
     await read_username();
     await read_teams();
+    await set_bet();
+    await set_event();
+    await set_driver_standing();
+    await set_team_standing();
+    await set_user_standing();
     let user_profile = document.getElementById("user-profile");
     let logout = document.getElementById("user-menu");
     user_profile.addEventListener("mouseover", show_menu);
@@ -35,14 +40,11 @@ async function read_username() {
 }
 
 async function set_event() {
-    let event = await fetch("https://localhost/catchevent/").then((result) => {
+    let event = await fetch("http://localhost/catchevent/").then((result) => {
         return result.json();
     });
-    console.log(event
-
-
-    )
-    const eventDisplay = document.getElementById("event")
+    const ev = document.getElementById("event")
+    ev.innerHTML = event["event"]
 }
 
 async function read_teams() {
@@ -70,6 +72,62 @@ async function set_drivers() {
     driver_two.textContent = drivers["drivers"][1];
 }
 
+async function set_driver_standing() {
+    let stand = await fetch("http://localhost/driverstand").then((result) => result.json());
+    let tbodyRef = document.getElementById('driverStanding').getElementsByTagName('tbody')[0]
+
+    for (let i = 0; i < stand["driverstand"].length; i++) {
+        let values = Object.values(stand["driverstand"][i]);
+        let newRow = tbodyRef.insertRow();
+
+        let plCell = newRow.insertCell(0);
+        plCell.innerHTML = values[1];
+
+        let nameCell = newRow.insertCell(1);
+        nameCell.innerHTML = values[0];
+
+        let ptCell = newRow.insertCell(2);
+        ptCell.innerHTML = values[2];
+    }
+}
+
+async function set_user_standing() {
+    let stand = await fetch("http://localhost/driverstand").then((result) => result.json());
+    let tbodyRef = document.getElementById('userStanding').getElementsByTagName('tbody')[0]
+
+    for (let i = 0; i < stand["driverstand"].length; i++) {
+        let values = Object.values(stand["driverstand"][i]);
+        let newRow = tbodyRef.insertRow();
+
+        let plCell = newRow.insertCell(0);
+        plCell.innerHTML = values[1];
+
+        let nameCell = newRow.insertCell(1);
+        nameCell.innerHTML = values[0];
+
+        let ptCell = newRow.insertCell(2);
+        ptCell.innerHTML = values[2];
+    }
+}
+
+async function set_team_standing() {
+    let stand = await fetch("http://localhost/teamstand").then((result) => result.json());
+    let tbodyRef = document.getElementById('constructorStanding').getElementsByTagName('tbody')[0]
+
+    for (let i = 0; i < stand["constand"].length; i++) {
+        let values = Object.values(stand["constand"][i]);
+        let newRow = tbodyRef.insertRow();
+
+        let plCell = newRow.insertCell(0);
+        plCell.innerHTML = values[1];
+
+        let nameCell = newRow.insertCell(1);
+        nameCell.innerHTML = values[0];
+
+        let ptCell = newRow.insertCell(2);
+        ptCell.innerHTML = values[2];
+    }
+}
 
 async function set_bet() {
     let bets = await fetch("http://localhost/bet")
@@ -79,17 +137,17 @@ async function set_bet() {
 
     for (let i = 0; i < bets["bets"].length; i++) {
         let values = Object.values(bets["bets"][i])
-        console.log(values)
         let newRow = tbodyRef.insertRow();
+
         let userCell = newRow.insertCell(0);
-
         userCell.innerHTML = values[0];
+
         let teamCell = newRow.insertCell(1);
-
         teamCell.innerHTML = values[1];
-        let driveroneCell = newRow.insertCell(2);
 
+        let driveroneCell = newRow.insertCell(2);
         driveroneCell.innerHTML = values[2];
+
         let ploneCell = newRow.insertCell(3);
         ploneCell.innerHTML = values[3];
 
@@ -136,7 +194,6 @@ async function send_bet() {
 
 window.addEventListener("load", setup);
 document.getElementById("team-select").addEventListener("change", set_drivers);
-window.addEventListener("load", set_bet);
 document.getElementById("WettButton").addEventListener("click", send_bet)
 
 
