@@ -121,17 +121,29 @@ def inser_bet(bet_model: BetModel):
     second = int(bet_model.second_pl)
     len_first = len(str(bet_model.first_pl))
     len_second = len(str(bet_model.second_pl))
-    event = get_upcoming_event().get("Event").get("Name")
+    ev = get_upcoming_event().get("Event").get("Name")
 
     if (len_first <= 2 and len_second <= 2) and (first <= number_of_driver and second <= number_of_driver):
-        insert_bet(Bet(user_id=user_id, team_id=team_id, first_driver=bet_model.first_driver, first_pl=bet_model.first_pl,
-                    second_driver=bet_model.second_driver, second_pl=bet_model.second_pl, event=event))
+        insert_bet(
+            Bet(user_id=user_id, team_id=team_id, first_driver=bet_model.first_driver, first_pl=bet_model.first_pl,
+                second_driver=bet_model.second_driver, second_pl=bet_model.second_pl, event=ev))
     else:
         print("false input")
 
+
 @app.get("/catchevent")
-def event():
-    return {"event": get_upcoming_event().get("Event").get("Name")}
+def get_event():
+    ev = get_upcoming_event().get("Event").get("Name")
+    return {"event": ev}
+
+@app.get("/driverstand")
+def get_driverstand():
+    return {"driverstand": get_current_driverstanding()}
+
+@app.get("/teamstand")
+def get_teamstand():
+    return {"constand": get_current_constructorstanding()}
+
 
 if __name__ == '__main__':
     create_database()
